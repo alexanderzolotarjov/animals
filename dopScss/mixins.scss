@@ -1,0 +1,10 @@
+@mixin robertoFont($fontSize, $weight, $lineHeight) {
+  font-family: 'Roboto';
+  font-size: $fontSize;
+  font-weight: $weight;
+  line-height: $lineHeight;
+}
+
+@mixin linear {
+  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+}
