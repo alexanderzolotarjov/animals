@@ -8,3 +8,43 @@
 @mixin linear {
   background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
 }
+
+@mixin buttonStyle {
+  color: $whi;
+  width: 298px;
+  height: 54px;
+  @include linear;
+  @include button;
+  border-radius: 25px;
+}
+
+@mixin linearColor {
+  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@mixin button {
+  &:hover {
+    background: #E47209;
+  }
+
+  &:active {
+    background: #4B9200;
+  }
+}
+
+@mixin subButton {
+  &:hover {
+    color: #4B9200;
+    border: 1px solid #4B9200;
+  }
+
+  &:active {
+    color: #D31414;
+    border: 1px solid #D31414;
+  }
+}

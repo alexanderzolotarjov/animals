@@ -251,30 +251,42 @@ body {
 }
 
 .main .content .pick-feed__body {
-  margin-bottom: 30px;
+  height: 28px;
   position: relative;
-  padding-top: 18px;
   background-color: #404950;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (auto)[8];
       grid-template-columns: repeat(8, auto);
+  margin-bottom: 100px;
 }
 
 .main .content .pick-feed__item {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   position: relative;
   display: -ms-grid;
   display: grid;
+  height: 68px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .main .content .pick-feed__span {
   position: absolute;
   z-index: 1;
-  top: 5px;
-  left: 50%;
+  top: 13px;
+  left: 0;
   width: 100%;
   height: 2px;
   background-color: #72828e;
+}
+
+.main .content .pick-feed__span_start {
+  left: 50%;
+  width: 50%;
 }
 
 .main .content .pick-feed__span_end {
@@ -283,13 +295,167 @@ body {
 }
 
 .main .content .pick-feed__input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   z-index: 2;
-  position: relative;
+  position: absolute;
 }
 
 .main .content .pick-feed__label {
-  -ms-grid-column-align: center;
-      justify-self: center;
+  padding: 20px 20px 0px 20px;
+  position: relative;
+  z-index: 5;
+  justify-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main .content .pick-feed__label:hover {
+  cursor: pointer;
+}
+
+.main .content .pick-feed__radio-box {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2;
+  border-radius: 50%;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  background-color: #FFEE2E;
+}
+
+.main .content .pick-feed__sub-title {
+  position: relative;
+  margin-top: 15px;
+  color: #fe9013;
+  font-family: 'Roboto';
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 36.4px;
+}
+
+.main .content .pick-feed__sub-title img {
+  margin-top: 8px;
+  padding-right: 3px;
+}
+
+.main .content .pick-feed .pick-feed__input:checked + .pick-feed__radio-box::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2;
+  border-radius: 50%;
+  top: -6px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #FE9013;
+}
+
+.main .content .pick-feed .pick-feed__input:checked + .pick-feed__radio-box::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2;
+  border-radius: 50%;
+  top: -15px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #FE9013;
+}
+
+.main .content .pick-feed__amount {
+  text-align: center;
+}
+
+.main .content .pick-feed__amount-body {
+  display: inline-block;
+  color: #929699;
+  border: 1px solid #929699;
+  border-radius: 2px;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  padding: 16px 9px;
+}
+
+.main .content .pick-feed__amount-input {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.main .content .pick-feed__amount-subspan {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(255, 166, 0, 0.247);
+  width: 15px;
+  height: 15px;
+}
+
+.main .content .pick-feed .pick-feed__amount-radio:checked + .pick-feed__amount-subspan {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(43, 255, 0, 0.699);
+  width: 15px;
+  height: 15px;
+}
+
+.main .content .pick-feed__amount-radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+}
+
+.main .content .pick-feed__amount-label {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22.4px;
+}
+
+.main .content .pick-feed__amount-button {
+  color: #FFFFFF;
+  width: 298px;
+  height: 54px;
+  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  border-radius: 25px;
+}
+
+.main .content .pick-feed__amount-button:hover {
+  background: #E47209;
+}
+
+.main .content .pick-feed__amount-button:active {
+  background: #4B9200;
+}
+
+.main .content .pick-feed__amount-title {
+  padding-left: 20px;
+  color: #333B41;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
 }
 
 .main .footer {

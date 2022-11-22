@@ -2,55 +2,265 @@
 @import './dopScss/mixins.scss';
 @import './dopScss/variables.scss';
 
+.testtest {
+  color: black;
+}
+
+
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: $whi;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.body_not-scroll {
+  overflow: hidden;
 }
 
 .main {
+  width: 100vw;
+
   .header {
-    position: absolute;
+    position: fixed;
     z-index: 10;
-    width: 100%;
-    height: 80px;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: $hhbig;
     background-color: $bl;
     display: grid;
-    padding: 5px 220px;
+    padding: 0px 220px;
     grid-template-columns: 82px 1fr auto;
     align-items: center;
 
-    &__logo {}
+    &__logo {
+      position: relative;
+      height: $hhbig;
+
+      & img {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
 
     &__menu {
-      padding-left: 63px;
+      display: grid;
+      justify-items: center;
 
       .header-list {
         display: flex;
 
         &__item {
-          margin-right: 60px;
+          margin-right: 4vw;
         }
 
         &__link {
           color: $whi;
 
           &:hover {
-            @include linear;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            @include linearColor
           }
         }
       }
     }
 
     &__copy {
+      display: block;
+      color: $whi;
       justify-self: flex-end;
-      @include robertoFont(16px, 500, 140%)
+      @include robertoFont(16px, 500, 140%);
+
+      &:hover {
+        @include linearColor;
+        cursor: pointer;
+      }
     }
+
+    &__button {
+      display: none;
+    }
+
+    @media (max-width: 519px) {
+      padding: 0px 10px;
+      grid-template-columns: 60px 1fr auto;
+      height: $hhsmall;
+
+      &__logo {
+        height: $hhsmall;
+      }
+
+      &__menu {
+        display: none;
+      }
+
+      &__copy {
+        display: none;
+      }
+
+      &__button {
+        display: block;
+        grid-column: 3/4;
+
+        .button-image {
+          &__open {
+            display: none;
+
+            &_active {
+              display: block;
+            }
+          }
+
+          &__close {
+            display: none;
+
+            &_active {
+              display: block;
+            }
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 1023px) {
+
+      @media (max-height: 519px) {
+        padding: 0px 10px;
+      }
+
+      padding: 0px 20px;
+      grid-template-columns: 60px 1fr auto;
+      height: $hhsmall;
+
+      &__logo {
+        height: $hhsmall;
+      }
+
+      &__menu {
+        display: none;
+      }
+
+      &__copy {
+        display: none;
+      }
+
+      &__button {
+        display: block;
+        grid-column: 3/4;
+
+        .button-image {
+          &__open {
+            display: none;
+
+            &_active {
+              display: block;
+            }
+          }
+
+          &__close {
+            display: none;
+
+            &_active {
+              display: block;
+            }
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    @media (min-width: 1024px) AND (max-width: 1380px) {
+      padding: 0px 120px;
+
+      &__copy {
+        @include robertoFont(14px, 500, 140%);
+      }
+    }
+  }
+
+  .stub {
+    height: $hhbig;
+
+    @media(max-width: 1023px) {
+      height: $hhsmall;
+    }
+  }
+
+  .mobile-menu {
+    background-color: $whi;
+    transition: all 0.5s ease-in;
+    padding: 20px 5px;
+    position: fixed;
+    top: $hhbig;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+
+    overflow-y: scroll;
+
+    @include robertoFont(18px, 500, 2);
+    text-align: center;
+
+    .mobile-list {
+      &__item {}
+
+      &__link {
+        display: block;
+      }
+    }
+
+    @media (max-width: 519px) {
+      top: $hhsmall;
+
+      &_open {
+        left: 0;
+      }
+
+      .mobile-list {
+        &__item {}
+
+        &__link {
+          &:active {
+            background-color: #00000021;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 1023px) {
+      top: $hhsmall;
+      height: calc(100vh - 50px);
+
+      &_open {
+        left: 0;
+      }
+
+      .mobile-list {
+        &__item {}
+
+        &__link {
+          &:active {
+            background-color: #00000021;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 1024px) AND (max-width: 1380px) {}
+
+
   }
 
   .slider {
@@ -58,8 +268,8 @@ body {
 
     &__title {
       position: absolute;
-      top: 166px;
-      left: 880px;
+      top: 9vw;
+      right: 10%;
       text-align: center;
 
       &::before {
@@ -68,15 +278,15 @@ body {
         position: absolute;
         top: -74px;
         left: -88px;
-        height: 465px;
-        width: 465px;
+        height: calc(300px + 10vw);
+        width: calc(300px + 10vw);
         border-radius: 50%;
         @include linear;
       }
     }
 
     &__title-line {
-      @include robertoFont(106.496px, 700, 75%);
+      @include robertoFont(calc(70px + 2vw), 700, 75%);
 
       &_yellow {
         color: $ye;
@@ -84,12 +294,11 @@ body {
     }
 
     &__button {
-      color: $whi;
-      margin-top: 64px;
-      width: 298px;
-      height: 54px;
-      @include linear;
-      border-radius: 25px;
+      @include buttonStyle;
+    }
+
+    &__bottom-button {
+      display: none;
     }
 
     &__image {
@@ -98,64 +307,137 @@ body {
       top: 0;
       width: 100%;
     }
+
+    @media (max-width: 519px) {
+      &__title {
+        top: calc(10vw);
+
+        &::before {
+          top: -5vw;
+          left: -5vw;
+          height: calc(20px + 25vw);
+          width: calc(20px + 25vw);
+        }
+      }
+
+      &__title-line {
+        @include robertoFont(calc(15px + 4vw), 700, 75%);
+      }
+
+      &__button {
+        display: none;
+      }
+
+      &__bottom-button {
+        display: block;
+        color: $whi;
+        margin: 10px 10px;
+        width: calc(100% - 20px);
+        height: 40px;
+        @include linear;
+        @include button;
+        border-radius: 25px;
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 1023px) {
+      &__title {
+        top: calc(10px + 10vw);
+
+        &::before {
+          top: -5vw;
+          left: -5vw;
+          height: calc(20px + 25vw);
+          width: calc(20px + 25vw);
+        }
+      }
+
+      &__title-line {
+        @include robertoFont(calc(15px + 4vw), 700, 75%);
+      }
+
+      &__button {
+        position: absolute;
+        bottom: -8vw;
+        left: -50vw;
+        margin: 0;
+        width: 198px;
+        height: 54px;
+      }
+    }
+
+    @media (min-width: 1024px) AND (max-width: 1380px) {
+      &__title {
+        top: 13vw;
+
+        &::before {
+          height: calc(130px + 15vw);
+          width: calc(130px + 15vw);
+        }
+      }
+
+      &__title-line {
+        @include robertoFont(calc(40px + 1.4vw), 700, 75%);
+      }
+
+      &__button {
+        margin-top: 6vw;
+        width: 198px;
+        height: 54px;
+      }
+    }
   }
 
   .content {
     position: relative;
     padding: 140px 220px 100px 220px;
 
-    .image-left-bottom {
-      position: absolute;
-      z-index: 10;
-      bottom: 0px;
-      left: 0px;
-      width: 292px;
-      height: 460px;
-      background-image: url('./img/bush_bottom-left.png');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    &::before {
-      content: '';
+    .image-right-top {
       position: absolute;
       top: 0;
       right: 0;
-      width: 204px;
-      height: 615px;
-      background-image: url('./img/flower_side.png');
-      background-repeat: no-repeat;
-      background-size: cover;
+      z-index: 8;
+      width: 9vw;
     }
 
-    &::after {
-      content: '';
+    .image-left-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 8;
+      width: 12vw;
+    }
+
+    .image-right-bottom {
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 368px;
-      height: 275px;
-      background-image: url('./img/flower_bottom-right.png');
-      background-repeat: no-repeat;
-      background-size: cover;
+      z-index: 8;
+      width: 21vw;
     }
+
 
     .main-card {
       color: $gr;
       display: grid;
-      grid-template-columns: 610px 1fr;
-      gap: 80px;
+      grid-template-columns: 35vw 1fr;
+      gap: 3vw;
 
       &__content {}
 
-      &__image {}
+      &__image {
+        width: 100%;
+        position: relative;
+      }
 
-      &__img {}
+      &__img {
+        width: 100%;
+      }
 
       &__body {}
 
       &__title {
-        @include robertoFont(48px, 400, 57.6px);
+        @include robertoFont(38px, 400, 57.6px);
         margin-bottom: 20px;
       }
 
@@ -174,10 +456,141 @@ body {
       }
     }
 
+    @media (max-width: 519px) {
+      padding: 10px 10px 20px 10px;
+
+      .image-right-top {
+        width: 11vw;
+      }
+
+      .main-card {
+        grid-template-columns: 1fr;
+        gap: 3vw;
+
+        &__content {}
+
+        &__image {
+          width: calc(90%);
+          position: relative;
+        }
+
+        &__img {
+          width: 100%;
+        }
+
+        &__body {}
+
+        &__title {
+          @include robertoFont(32px, 400, 57.6px);
+          margin-bottom: 10px;
+        }
+
+        &__short-info {
+          @include robertoFont(15px, 400, 20.8px);
+          margin-bottom: 20px;
+        }
+
+        &__how {
+          @include robertoFont(20px, 400, 28.8px);
+          margin-bottom: 15px;
+        }
+
+        &__full-info {
+          @include robertoFont(15px, 400, 22.4px);
+        }
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 1023px) {
+      padding: 70px 12vw 50px 12vw;
+
+      .image-right-top {
+        width: 11vw;
+      }
+
+      .main-card {
+        grid-template-columns: 1fr;
+        gap: 3vw;
+
+        &__content {}
+
+        &__image {
+          width: calc(250px + 20%);
+          position: relative;
+        }
+
+        &__img {
+          width: 100%;
+        }
+
+        &__body {}
+
+        &__title {
+          @include robertoFont(32px, 400, 57.6px);
+          margin-bottom: 10px;
+        }
+
+        &__short-info {
+          @include robertoFont(15px, 400, 20.8px);
+          margin-bottom: 20px;
+        }
+
+        &__how {
+          @include robertoFont(20px, 400, 28.8px);
+          margin-bottom: 15px;
+        }
+
+        &__full-info {
+          @include robertoFont(15px, 400, 22.4px);
+        }
+      }
+    }
+
+    @media (min-width: 1024px) AND (max-width: 1380px) {
+      padding: 70px 120px 50px 120px;
+
+      .main-card {
+        grid-template-columns: 35vw 1fr;
+        gap: 3vw;
+
+        &__content {}
+
+        &__image {
+          width: 100%;
+          position: relative;
+        }
+
+        &__img {
+          width: 100%;
+        }
+
+        &__body {}
+
+        &__title {
+          @include robertoFont(32px, 400, 57.6px);
+          margin-bottom: 10px;
+        }
+
+        &__short-info {
+          @include robertoFont(15px, 400, 20.8px);
+          margin-bottom: 20px;
+        }
+
+        &__how {
+          @include robertoFont(20px, 400, 28.8px);
+          margin-bottom: 15px;
+        }
+
+        &__full-info {
+          @include robertoFont(15px, 400, 22.4px);
+        }
+      }
+    }
+
     .grid-cards {
       display: grid;
       color: $bl;
-      padding-top: 180px;
+      padding-top: 6vw;
 
       &__body {
         position: relative;
@@ -187,10 +600,24 @@ body {
       }
 
       &__item {
+        position: relative;
         display: grid;
         grid-template-columns: 1fr 43px;
         border: 1px solid $dye;
         border-radius: 5px;
+
+        &:hover {
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            background-color: #0000004b;
+          }
+        }
       }
 
       &__image {
@@ -233,6 +660,7 @@ body {
         height: 62px;
         border-radius: 50%;
         @include linear;
+        @include button;
 
         & img {
           position: absolute;
@@ -250,6 +678,7 @@ body {
         height: 62px;
         border-radius: 50%;
         @include linear;
+        @include button;
 
         & img {
           position: absolute;
@@ -268,6 +697,59 @@ body {
         border-radius: 25px;
         color: $whi;
         @include robertoFont(16px, 500, 22.4px);
+        @include button;
+      }
+
+      @media (max-width: 519px) {
+        padding-top: 60px;
+
+        &__body {
+          row-gap: 30px;
+          column-gap: 30px;
+          grid-template-columns: 1fr;
+        }
+
+        &__item {
+          &_hide {
+            display: none;
+          }
+        }
+
+        &__left-button {
+          display: none;
+        }
+
+        &__right-button {
+          display: none;
+        }
+
+        &__choose-button {
+          margin-top: 30px;
+        }
+      }
+
+      @media (min-width: 520px) AND (max-width: 1023px) {
+        &__body {
+          row-gap: 100px;
+          column-gap: 30px;
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__item {
+          &_hide {
+            display: none;
+          }
+        }
+
+        &__left-button {
+          left: 50%;
+          transform: translateX(calc(-50% - 45px));
+        }
+
+        &__right-button {
+          left: 50%;
+          transform: translateX(calc(-50% + 45px));
+        }
       }
     }
   }
@@ -279,7 +761,6 @@ body {
 
     &__body {
       margin: 0 auto;
-      max-width: 1160px;
       padding: 50px;
       background: rgba(253, 253, 255, 0.52);
       backdrop-filter: blur(2px);
@@ -323,6 +804,41 @@ body {
 
       color: $whi;
       @include robertoFont(16px, 500, 140%);
+      @include button;
+    }
+
+    @media (max-width: 519px) {
+      padding: 40px 10px 40px 10px;
+
+      &__body {
+        padding: 5vw 38px 5vw 38px;
+      }
+
+      &__button {
+        position: relative;
+        @include linear;
+        margin-bottom: 60px;
+        justify-self: center;
+        width: 100%;
+        height: 54px;
+        border-radius: 25px;
+
+        color: $whi;
+        @include robertoFont(16px, 500, 140%);
+        @include button;
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 1023px) {
+      padding: 70px 12vw 100px 12vw;
+
+      &__body {
+        padding: 5vw;
+      }
+    }
+
+    @media (min-width: 1024px) AND (max-width: 1380px) {
+      padding: 70px 120px 100px 120px;
     }
   }
 
@@ -339,7 +855,7 @@ body {
       display: grid;
       justify-content: center;
       grid-template-columns: 168px auto 168px auto 168px;
-      gap: 30px;
+      gap: 1vw;
     }
 
     &__item {}
@@ -363,6 +879,7 @@ body {
     &__img {}
 
     &__sub-item {
+      position: relative;
       height: 168px;
       display: grid;
       justify-items: center;
@@ -371,21 +888,94 @@ body {
 
     &__sub-image {}
 
-    &__sub-img {}
+    &__sub-img {
+      &_green {
+        display: none;
+      }
+    }
+
+    @media (max-width: 519px) {
+      &__items {
+        margin-bottom: 65px;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr auto 1fr auto 1fr;
+        gap: 1vw;
+      }
+
+      &__sub-title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      &__sub-item {
+        height: 0px;
+      }
+
+      &__sub-item {
+        height: 0px;
+      }
+
+      &__sub-img {
+        display: none;
+
+        &_green {
+          display: block;
+          position: absolute;
+          top: -35px;
+          right: -62px;
+          transform: rotate(83deg);
+        }
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 1023px) {
+      &__items {
+        margin-bottom: 65px;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr auto 1fr auto 1fr;
+        gap: 1vw;
+      }
+
+      &__sub-title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      &__sub-item {
+        height: 0px;
+      }
+
+      &__sub-img {
+        display: none;
+
+        &_green {
+          display: block;
+          position: absolute;
+          top: -35px;
+          right: -62px;
+          transform: rotate(83deg);
+        }
+      }
+    }
   }
 
   .testimonials {
     position: relative;
     color: $lgr;
+    padding: 20px 220px 20px 220px;
 
     .fern_bottom-left {
       position: absolute;
-      bottom: -130px;
+      bottom: 0px;
       right: 0;
     }
 
     &__title {
-      margin-top: 150px;
+      margin-top: 5vw;
       color: $gr;
       text-align: center;
       text-shadow: 0px 1px 3px rgba(51, 59, 65, 1);
@@ -393,15 +983,13 @@ body {
     }
 
     &__body {
-      padding: 50px 2px 20px 2px;
+      overflow-x: auto;
+      padding: 20px 2px 20px 2px;
       margin: 0 auto;
-      max-width: 1160px;
       display: grid;
-      gap: 30px;
-      grid-auto-columns: 266px;
+      gap: 2.5%;
+      grid-auto-columns: 23%;
       grid-auto-flow: column;
-
-      overflow-x: scroll;
 
       &::-webkit-scrollbar {
         width: 100px;
@@ -430,6 +1018,7 @@ body {
       background: #F1F3F2;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
+
 
       display: grid;
       grid-template-columns: 37px 1fr;
@@ -480,14 +1069,69 @@ body {
     }
 
     &__button {
-      margin: 30px 220px 175px 220px;
+      margin: 30px 0px 0px 0px;
       @include linear;
       justify-self: center;
       width: 298px;
       height: 54px;
+      padding-top: 3px;
 
       color: $whi;
       @include robertoFont(16px, 500, 140%);
+      @include button;
+    }
+
+    @media (max-width: 519px) {
+      padding: 20px 10px 20px 10px;
+
+      .fern_bottom-left {
+        display: none;
+      }
+
+      &__body {
+        gap: 5.5%;
+        grid-auto-columns: calc(100% - 2px);
+      }
+
+      &__button {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 1023px) {
+      padding: 20px 12vw 20px 12vw;
+
+      .fern_bottom-left {
+        width: 11vw;
+      }
+
+      &__body {
+        gap: 3.5%;
+        grid-auto-columns: 48%;
+      }
+    }
+
+    @media (min-width: 1024px) AND (max-width: 1380px) {
+
+      padding: 20px 120px 20px 120px;
+
+      .fern_bottom-left {
+        width: 9vw;
+      }
+
+      &__body {
+        gap: 2.5%;
+        grid-auto-columns: 31.4%;
+      }
+    }
+
+    @media (min-width: 1381px) AND (max-width: 1550px) {
+      &__body {
+        gap: 2.5%;
+        grid-auto-columns: 31.5%;
+      }
     }
   }
 
@@ -501,6 +1145,57 @@ body {
       .footer-top {
         display: grid;
         grid-template-columns: auto 1fr;
+
+        &__links {
+          display: none;
+        }
+
+        &__item {}
+
+        &__sub-item {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          margin-bottom: 10px;
+
+          &:hover {
+            .footer-top__link-image {
+              background-color: rgba(75, 146, 0, 1);
+            }
+
+            .footer-top__link {
+              color: rgba(75, 146, 0, 1);
+            }
+          }
+
+          &:active {
+            .footer-top__link-image {
+              background-color: rgba(75, 146, 0, 1);
+            }
+
+            .footer-top__link {
+              color: rgba(75, 146, 0, 1);
+            }
+          }
+        }
+
+        &__link {
+          margin-left: 12px;
+          align-self: center;
+          color: $whi;
+          @include robertoFont(16px, 400, 22.4px);
+        }
+
+        &__link-image {
+          background-color: rgba(196, 196, 196, 0.5);
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &__link-img {}
 
         &__logo {
           margin-top: 40px;
@@ -538,11 +1233,26 @@ body {
         &__button {
           margin-left: 10px;
           padding: 10px 39px;
-          border: 1px solid #4B9200;
+          border: 1px solid $bl;
           border-radius: 5px;
           @include robertoFont(16px, 400, 22.4px);
-          color: rgba(75, 146, 0, 1);
+          @include subButton;
+          padding-top: 13px;
+          color: $bl;
           background-color: rgba(241, 243, 242, 1);
+        }
+
+        &__button {
+          display: none;
+          @include linear;
+          justify-self: start;
+          width: 298px;
+          height: 54px;
+          margin-bottom: 40px;
+
+          color: $whi;
+          @include robertoFont(16px, 500, 140%);
+          @include button;
         }
       }
 
@@ -556,20 +1266,43 @@ body {
 
           color: $whi;
           @include robertoFont(16px, 500, 140%);
+          @include button;
         }
       }
 
       .footer-bottom {
         margin-bottom: 45px;
         display: grid;
-        grid-template-columns: auto 790px auto;
+        grid-template-columns: auto 1fr auto;
 
         &__links {}
 
-        &__item {
+        &__item {}
+
+        &__sub-item {
           display: grid;
           grid-template-columns: auto 1fr;
           margin-bottom: 10px;
+
+          &:hover {
+            .footer-bottom__link-image {
+              background-color: rgba(75, 146, 0, 1);
+            }
+
+            .footer-bottom__link {
+              color: rgba(75, 146, 0, 1);
+            }
+          }
+
+          &:active {
+            .footer-bottom__link-image {
+              background-color: rgba(75, 146, 0, 1);
+            }
+
+            .footer-bottom__link {
+              color: rgba(75, 146, 0, 1);
+            }
+          }
         }
 
         &__link {
@@ -614,25 +1347,226 @@ body {
           line-height: 140%;
 
           &:hover {
-            @include linear;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            color: #4b9200;
           }
         }
 
         &__copy {
+          color: $whi;
+          display: block;
           justify-self: end;
           align-self: flex-end;
           margin-bottom: 10px;
+          font-weight: 400;
+
+          &:hover {
+            color: rgba(75, 146, 0, 1);
+            // text-decoration: underline;
+            // background-color: $whi;
+            font-weight: 400;
+          }
+
+          &:active {
+            color: rgba(75, 146, 0, 1);
+            text-decoration: underline;
+            background-color: $whi;
+          }
         }
 
         &__copy-item {
-          @include robertoFont(16px, 100, 20.8px);
+          @include robertoFont(16px, 300, 20.8px);
         }
       }
     }
+
+    @media (max-width: 519px) {
+      padding: 0 10px;
+
+      &__body {
+        .footer-top {
+          padding-top: 10px;
+          display: grid;
+          grid-template-columns: 1fr;
+
+          &__logo {
+            justify-self: center;
+            margin: 10px 0px 20px 0px;
+          }
+
+          &__subscribe {
+            display: none;
+          }
+
+          &__links {
+            display: block;
+
+            display: grid;
+            justify-content: center;
+            grid-template-columns: auto auto auto auto;
+            margin: 0px 0px 20px 0px;
+          }
+
+          &__item {
+            margin: 0 2vw;
+          }
+
+          &__button {
+            margin: 0 0 20px 0;
+            display: block;
+            justify-self: center;
+          }
+        }
+
+        .footer-middle {
+          display: none;
+        }
+
+        .footer-bottom {
+          grid-template-columns: 1fr;
+
+          &__links {
+            display: none;
+          }
+
+          &__menu {
+            gap: calc(6vw);
+          }
+
+          &__copy {
+            justify-self: center;
+            margin: 0 0 20px 0;
+            grid-row: 1/2;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 520px) AND (max-width: 719px) {
+
+      @media (max-height: 519px) {
+        padding: 0 10px;
+      }
+
+      padding: 0 20px;
+
+      &__body {
+        .footer-top {
+          padding-top: 10px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+
+          &__logo {
+            margin-top: 0;
+          }
+
+          &__subscribe {
+            display: none;
+          }
+
+          &__links {
+            grid-row: 1/3;
+            grid-column: 2/3;
+            display: block;
+
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+          }
+
+          &__item {
+            margin: 0;
+          }
+
+          &__button {
+            margin: 0 0 30px 0;
+            display: block;
+          }
+        }
+
+        .footer-middle {
+          display: none;
+        }
+
+        .footer-bottom {
+          grid-template-columns: 1fr;
+
+          &__links {
+            display: none;
+          }
+
+          &__menu {
+            gap: calc(6vw);
+          }
+
+          &__copy {
+            justify-self: center;
+            grid-row: 1/2;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 720px) AND (max-width: 1023px) {
+
+      @media (max-height: 519px) {
+        padding: 0 10px;
+      }
+
+      padding: 0 20px;
+
+      &__body {
+        .footer-top {
+          padding-top: 10px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+
+          &__logo {
+            margin-top: 0;
+          }
+
+          &__subscribe {
+            display: none;
+          }
+
+          &__links {
+            grid-row: 1/3;
+            grid-column: 2/3;
+            display: block;
+
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+          }
+
+          &__item {
+            margin: 0;
+          }
+
+          &__button {
+            margin: 0 0 30px 0;
+            display: block;
+          }
+        }
+
+        .footer-middle {
+          display: none;
+        }
+
+        .footer-bottom {
+          &__links {
+            display: none;
+          }
+
+          &__menu {
+            gap: calc(20vw - 120px);
+          }
+        }
+      }
+    }
+
+    @media (min-width: 1024px) AND (max-width: 1380px) {
+      padding: 0 120px;
+    }
   }
 }
+
+
+@media (min-width: 1024px) AND (max-width: 1380px) {}
